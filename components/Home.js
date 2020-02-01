@@ -4,8 +4,14 @@ import { Text, View, StyleSheet, Button,Alert, TextInput, Input, ImageBackground
 
 export class Home extends Component {
     constructor(props) {  
-        super(props);  
-        this.state = {text: ''};  
+        super(props)
+        this.state = {text: ''}
+    }
+
+    onTextShow(text){
+        let s = this.state;
+        s.text = text;
+        this.setState(s);
     }
     render() {
         return (
@@ -18,10 +24,11 @@ export class Home extends Component {
 
             {/*//////////////////////////////////// Text Input Field /////////////////////////////////////  */}
             <View style={{padding: 10}}>  
-                <TextInput  
+                <TextInput editable={true}
                     style={{height: 40,backgroundColor: 'azure', fontSize: 20}}  
                     placeholder="Type AnyThing!"  
-                    onChangeText={(text) => this.setState({text})}  
+                    value={this.state.text}
+                    onChangeText={(text)=>this.setState({text})}  
                 />  
             </View>  
             {/*///////////////////////////////////////////////////////////////////////////////////////////  */}
@@ -40,10 +47,11 @@ export class Home extends Component {
             {/* /////////////////////////////////////////////////////////////////////////////////////////// */}
 
             {/* ///////////////////////////////////////// Button ////////////////////////////////////////// */}
-              <Button
-                title="Delete "
-                onPress={() => Alert.alert('Saala Jalta he MAjnuuu....')}
-              />
+            <Button
+        onPress={()=>Alert.alert(this.state.text)}
+        title="Press Me"
+        color="#2168C6"
+      />
             </View>
             // ////////////////////////////////////////////////////////////////////////////////////////////////
         );
